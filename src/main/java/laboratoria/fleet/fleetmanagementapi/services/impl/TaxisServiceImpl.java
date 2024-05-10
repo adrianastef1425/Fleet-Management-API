@@ -5,6 +5,9 @@ import laboratoria.fleet.fleetmanagementapi.entities.Taxis;
 import laboratoria.fleet.fleetmanagementapi.mappers.TaxisMapper;
 import laboratoria.fleet.fleetmanagementapi.repositories.TaxisRepository;
 import laboratoria.fleet.fleetmanagementapi.services.TaxisService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +41,13 @@ public class TaxisServiceImpl implements TaxisService {
         return taxisList.stream()
                 .map((taxis) -> TaxisMapper.mapToTaxisDto(taxis))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaxisDto> getTaxisWithPagination(int pageNumber, int pageSize){
+        Page<Taxis> taxisList= taxisRepository.findAll(PageRequest.of(pageNumber, pageSize));
+      return taxisList.stream()
+              .map((taxis) -> TaxisMapper.mapToTaxisDto(taxis))
+              .collect(Collectors.toList());
     }
 }

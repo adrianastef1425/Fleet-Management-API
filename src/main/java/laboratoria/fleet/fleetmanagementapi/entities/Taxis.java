@@ -17,9 +17,6 @@ public class Taxis {
     @Column(name = "plate")
     private String plate;
 
-
-
-
     public long getId() {
         return id;
     }

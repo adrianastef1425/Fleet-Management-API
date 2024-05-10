@@ -11,7 +11,6 @@ public class TaxisDto {
         this.plate = plate;
     }
 
-
     public long getId() {
         return id;
     }
