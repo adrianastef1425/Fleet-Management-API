@@ -1,9 +1,0 @@
-
-]	java:S125"<This block of commented-out lines of code should be removed.(ËÓ¦šûÿÿÿÿ8ƒÁûœö1
-]	java:S125"<This block of commented-out lines of code should be removed.(”•»Ñıÿÿÿÿ8ƒÁûœö1
-•
-java:S6204("RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8¦Öü˜ö1J$04c91c5e-4a6c-4c98-bee4-4ed4072bf8e5
-P
-java:S1611'"3Remove the parentheses around the "taxis" parameter(¼²†8„Áûœö1
-d
-java:S1612'"GReplace this lambda with method reference 'TaxisMapper::mapToTaxisDto'.(¼²†8„Áûœö1
