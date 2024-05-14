@@ -5,6 +5,7 @@ import laboratoria.fleet.fleetmanagementapi.entities.Taxis;
 import laboratoria.fleet.fleetmanagementapi.mappers.TaxisMapper;
 import laboratoria.fleet.fleetmanagementapi.repositories.TaxisRepository;
 import laboratoria.fleet.fleetmanagementapi.services.TaxisService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaxisServiceImpl implements TaxisService {
-
+    @Autowired
     private TaxisRepository taxisRepository;
 
     public TaxisServiceImpl(TaxisRepository taxisRepository) {
