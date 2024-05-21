@@ -1,40 +1,21 @@
-package laboratoria.fleet.fleetmanagementapi.entities;
-
-import jakarta.persistence.*;
+package laboratoria.fleet.fleetmanagementapi.dto;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "trajectories")
-public class Trajectories {
-    @Id
+public class TrajectoriesDto {
+
     private long id;
-
-    @ManyToOne
-    @JoinColumn(name = "taxi_id")
-    private Taxis taxis;
-
-    @Column(name = "taxi_id")
     private int taxiId;
-
-    @Column(name = "date")
-    private Date date; //clase Date es propio de java para fechas
-
-    @Column(name = "latitude")
+    private Date date;
     private double latitude;
-
-    @Column(name = "longitude")
     private double longitude;
 
-    public Trajectories() {
-    }
-
-    public Taxis getTaxis() {
-        return taxis;
-    }
-
-    public void setTaxis(Taxis taxis) {
-        this.taxis = taxis;
+    public TrajectoriesDto(long id, int taxiId, Date date, double latitude, double longitude) {
+        this.id = id;
+        this.taxiId = taxiId;
+        this.date = date;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public long getId() {
