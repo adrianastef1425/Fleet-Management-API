@@ -1,22 +1,26 @@
 package laboratoria.fleet.fleetmanagementapi.dto;
 
+import laboratoria.fleet.fleetmanagementapi.entities.Taxis;
+
 import java.util.Date;
 
-public class TrajectoriesDto {
+public class LatestTrajectoriesDto {
+    //Taxis taxis = new Taxis();
 
     private long id;
-    private long taxiId;
+    private String plate;
     private Date date;
     private double latitude;
     private double longitude;
 
-    public TrajectoriesDto(long id, long taxiId, Date date, double latitude, double longitude) {
+    public LatestTrajectoriesDto(long id, String plate, Date date, double latitude, double longitude) {
         this.id = id;
-        this.taxiId = taxiId;
+        this.plate = plate;
         this.date = date;
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
 
     public long getId() {
         return id;
@@ -26,13 +30,15 @@ public class TrajectoriesDto {
         this.id = id;
     }
 
-    public long getTaxiId() {
-        return taxiId;
+    //////////
+    public String getPlate() {
+        return plate;
     }
 
-    public void setTaxiId(int taxiId) {
-        this.taxiId = taxiId;
+    public void setPlate(String plate) {
+        this.plate = plate;
     }
+    /////////
 
     public Date getDate() {
         return date;

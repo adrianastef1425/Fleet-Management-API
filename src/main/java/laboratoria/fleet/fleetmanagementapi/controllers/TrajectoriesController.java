@@ -1,5 +1,6 @@
 package laboratoria.fleet.fleetmanagementapi.controllers;
 
+import laboratoria.fleet.fleetmanagementapi.dto.LatestTrajectoriesDto;
 import laboratoria.fleet.fleetmanagementapi.dto.TrajectoriesDto;
 import laboratoria.fleet.fleetmanagementapi.entities.Trajectories;
 import laboratoria.fleet.fleetmanagementapi.services.TrajectoriesService;
@@ -29,11 +30,13 @@ public class TrajectoriesController {
         return ResponseEntity.ok(trajectoriesList);
     }
 
-    /*
-    @GetMapping("/last-location")
-    public List<Trajectories> getTrajectoriesLastLocationController(){
 
-        return
+    @GetMapping("/latest")
+    public ResponseEntity <List<LatestTrajectoriesDto>> getTrajectoriesLastLocationController(){
+        List<LatestTrajectoriesDto> trajectoriesList = trajectoriesService.getTrajectoriesLastLocation();
+        return ResponseEntity.ok(trajectoriesList);
     }
-    */
+
+
+
 }
