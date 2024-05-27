@@ -11,7 +11,7 @@ public interface TrajectoriesService {
 
     List<TrajectoriesDto> getTrajectories();
 
-    List<TrajectoriesDto> getTrajectoriesByIdAndDate(long id, String dateString);
+    List<TrajectoriesDto> getTrajectoriesByIdAndDate(long id, String dateString, int page, int size);
 
-    List<LatestTrajectoriesDto> getTrajectoriesLastLocation();
+    List<LatestTrajectoriesDto> getTrajectoriesLastLocation(int page, int size);
 }

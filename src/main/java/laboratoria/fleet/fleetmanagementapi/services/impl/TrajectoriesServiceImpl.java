@@ -43,7 +43,7 @@ public class TrajectoriesServiceImpl implements TrajectoriesService {
     }
 
     @Override
-    public List<TrajectoriesDto> getTrajectoriesByIdAndDate(long taxiId, String dateString) {
+    public List<TrajectoriesDto> getTrajectoriesByIdAndDate(long taxiId, String dateString, int page, int size) {
         /*
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate;
@@ -78,9 +78,11 @@ public class TrajectoriesServiceImpl implements TrajectoriesService {
 
         //List<Trajectories> trajectoriesList = trajectoriesRepository.findAllByTaxis_IdAndDateBetween(taxiId, startDate, endDate);
 
+        Pageable pageable = PageRequest.of(page, size/*, Sort.by("date").descending()*/);
+        Page<Trajectories> trajectoriesPage = trajectoriesRepository.getAllByTaxisIdAndDate(taxiId, date, pageable);
 
-        List<Trajectories> trajectoriesList = trajectoriesRepository.getAllByTaxisIdAndDate(taxiId, date);
-        return trajectoriesList.stream()
+        //List<Trajectories> trajectoriesList = trajectoriesRepository.getAllByTaxisIdAndDate(taxiId, date);
+        return trajectoriesPage.stream()
                 .map(trajectories -> TrajectoriesMapper.mapToTrajectoriesDto(trajectories))
                 .collect(Collectors.toList());
 
@@ -88,8 +90,9 @@ public class TrajectoriesServiceImpl implements TrajectoriesService {
 
 
     @Override
-    public List<LatestTrajectoriesDto> getTrajectoriesLastLocation() {
-        List<Trajectories> trajectoriesList = trajectoriesRepository.getAllTaxisWithLastTrajectory();
+    public List<LatestTrajectoriesDto> getTrajectoriesLastLocation(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Trajectories> trajectoriesList = trajectoriesRepository.getAllTaxisWithLastTrajectory(pageable);
         return trajectoriesList.stream()
                 .map(trajectories -> TrajectoriesMapper.mapToLatestTrajectoriesDto(trajectories))
                 .collect(Collectors.toList());

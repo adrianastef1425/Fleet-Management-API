@@ -19,28 +19,25 @@ public class TrajectoriesController {
         this.trajectoriesService = trajectoriesService;
     }
 
-
-    @GetMapping()
+    @GetMapping("/all")
     public ResponseEntity<List<TrajectoriesDto>> getTrajectoriesController(){
         List<TrajectoriesDto> trajectoriesList = trajectoriesService.getTrajectories();
         return ResponseEntity.ok(trajectoriesList);
     }
 
-    @GetMapping("{taxisId}")
-    public ResponseEntity<List<TrajectoriesDto>> getTrajectoriesByIdAndDateController(@PathVariable("taxisId") Integer id, @RequestParam String date){
-        List<TrajectoriesDto> trajectoriesList = trajectoriesService.getTrajectoriesByIdAndDate(id, date);
+    @GetMapping(/*"{taxisId}"*/)
+    public ResponseEntity<List<TrajectoriesDto>> getTrajectoriesByIdAndDateController(@RequestParam/*@PathVariable("taxisId")*/ Integer id,
+                                                                                      @RequestParam String date,
+                                                                                      @RequestParam(defaultValue = "0") int page,
+                                                                                      @RequestParam(defaultValue = "10") int limit){
+        List<TrajectoriesDto> trajectoriesList = trajectoriesService.getTrajectoriesByIdAndDate(id, date, page, limit);
         return ResponseEntity.ok(trajectoriesList);
     }
-
-
-
 
     @GetMapping("/latest")
-    public ResponseEntity <List<LatestTrajectoriesDto>> getTrajectoriesLastLocationController(){
-        List<LatestTrajectoriesDto> trajectoriesList = trajectoriesService.getTrajectoriesLastLocation();
+    public ResponseEntity <List<LatestTrajectoriesDto>> getTrajectoriesLastLocationController(@RequestParam(defaultValue = "0") int page,
+                                                                                              @RequestParam(defaultValue = "2") int limit){
+        List<LatestTrajectoriesDto> trajectoriesList = trajectoriesService.getTrajectoriesLastLocation(page, limit);
         return ResponseEntity.ok(trajectoriesList);
     }
-
-
-
 }
