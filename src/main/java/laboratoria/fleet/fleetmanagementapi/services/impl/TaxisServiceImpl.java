@@ -16,25 +16,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaxisServiceImpl implements TaxisService {
-    @Autowired
+    @Autowired//funciona si esté o no esté
     private TaxisRepository taxisRepository;
 
     public TaxisServiceImpl(TaxisRepository taxisRepository) {
         this.taxisRepository = taxisRepository;
     }
-    /*
-    @Override
-    public TaxisDto createTaxis(TaxisDto taxisDto) {
-        Taxis taxis = TaxisMapper.mapToTaxis(taxisDto);
-        Taxis savedTaxis = taxisRepository.save(taxis);
-        return TaxisMapper.mapToTaxisDto(savedTaxis);
-    }*/
-    /*
-    @Override
-    public TaxisDto getTaxisById(long taxisId) {
-        Taxis taxis = taxisRepository.findById(taxisId).orElse(null);
-        return TaxisMapper.mapToTaxisDto(taxis);
-    }*/
 
     @Override
     public List<TaxisDto> getAllTaxis() {
@@ -48,7 +35,7 @@ public class TaxisServiceImpl implements TaxisService {
     public List<TaxisDto> getTaxisWithPagination(int pageNumber, int pageSize){
         Page<Taxis> taxisList= taxisRepository.findAll(PageRequest.of(pageNumber, pageSize));
       return taxisList.stream()
-              .map((taxis) -> TaxisMapper.mapToTaxisDto(taxis))
+              .map(taxis -> TaxisMapper.mapToTaxisDto(taxis))
               .collect(Collectors.toList());
     }
 }

@@ -1,17 +1,37 @@
 package laboratoria.fleet.fleetmanagementapi.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "trajectories")
 public class Trajectories {
+    @Id
     private long id;
-    private int taxiId;
-    private Date date; //clase Date es propio de java para fechas
-    private double latitude;
-    private double longitude;
 
+    ////
+    @ManyToOne
+    @JoinColumn(name = "taxi_id")
+    private Taxis taxis;
+    //////
+
+    //@Column(name = "taxi_id")//
+    // ///private long taxis//mapper -> getTaxis().plate
+    //private long taxiId;
+
+    @Column(name = "date")
+    private Date date; //clase Date es propio de java para fechas
+
+    @Column(name = "latitude")
+    private double latitude;
+
+    @Column(name = "longitude")
+    private double longitude;
 
     public Trajectories() {
     }
+
 
     public long getId() {
         return id;
@@ -21,13 +41,24 @@ public class Trajectories {
         this.id = id;
     }
 
-    public int getTaxiId() {
+    /*
+    public long getTaxiId() {
         return taxiId;
     }
 
-    public void setTaxiId(int taxiId) {
+    public void setTaxiId(long taxiId) {
         this.taxiId = taxiId;
+    }*/
+
+    //////////////////////
+    public Taxis getTaxis() {
+        return taxis;
     }
+
+    public void setTaxi(Taxis taxis) {
+        this.taxis = taxis;
+    }
+    ////////////////////////
 
     public Date getDate() {
         return date;

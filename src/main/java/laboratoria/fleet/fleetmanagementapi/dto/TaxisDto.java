@@ -15,15 +15,7 @@ public class TaxisDto {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getPlate() {
         return plate;
-    }
-
-    public void setPlate(String plate) {
-        this.plate = plate;
     }
 }
