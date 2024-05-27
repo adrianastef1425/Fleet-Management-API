@@ -9,6 +9,10 @@ import laboratoria.fleet.fleetmanagementapi.repositories.TaxisRepository;
 import laboratoria.fleet.fleetmanagementapi.repositories.TrajectoriesRepository;
 import laboratoria.fleet.fleetmanagementapi.services.TrajectoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -74,10 +78,12 @@ public class TrajectoriesServiceImpl implements TrajectoriesService {
 
         //List<Trajectories> trajectoriesList = trajectoriesRepository.findAllByTaxis_IdAndDateBetween(taxiId, startDate, endDate);
 
+
         List<Trajectories> trajectoriesList = trajectoriesRepository.getAllByTaxisIdAndDate(taxiId, date);
         return trajectoriesList.stream()
                 .map(trajectories -> TrajectoriesMapper.mapToTrajectoriesDto(trajectories))
                 .collect(Collectors.toList());
+
     }
 
 

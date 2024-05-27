@@ -2,6 +2,8 @@ package laboratoria.fleet.fleetmanagementapi.repositories;
 
 import laboratoria.fleet.fleetmanagementapi.entities.Taxis;
 import laboratoria.fleet.fleetmanagementapi.entities.Trajectories;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,10 +17,10 @@ public interface TrajectoriesRepository extends JpaRepository<Trajectories, Long
 
     //List<Trajectories> findAllByTaxis_IdAndDateBetween(Long taxiId, Date startDate, Date endDate);
 
-    @Query(value = "SELECT * FROM trajectories WHERE taxi_id = :taxiId AND date_trunc('day', date) = :date", nativeQuery = true)
+    @Query(value = "SELECT t FROM Trajectories t WHERE t.taxis.id = :taxiId AND date_trunc('day', t.date) = :date")
     List<Trajectories> getAllByTaxisIdAndDate(@Param("taxiId") long taxiId, @Param("date") Date date);
 
-    @Query("SELECT t FROM Trajectories t WHERE t.date = (SELECT MAX(t2.date) FROM Trajectories t2 WHERE t2.taxis.id = t.taxis.id)")
+    @Query("SELECT t FROM Trajectories t WHERE t.id in (SELECT MAX(t2.id) FROM Trajectories t2 GROUP BY t2.taxis.id)")
     List<Trajectories> getAllTaxisWithLastTrajectory();
 
 }
