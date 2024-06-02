@@ -184,17 +184,17 @@ usuarios de la plataforma.
 ### Criterios de aceptación
 
 * Crear un endpoint para la creación de usuarios de acuerdo a la
-[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/users/createUser)
+[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/user/createUser)
 proporcionada.
 * Desarollar un endpoint para la obtención de usuarios de acuerdo a la
-[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/users/getUsers)
+[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/user/getUsers)
 proporcionada.
 * Implementar un endpoint para actualizar la
 información de un usuario existente de acuerdo a la
-[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/users/updateUser)
+[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/user/updateUser)
 proporcionada.
 * Crear un endpoint para eliminar un usuario de acuerdo a la
-[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/users/deleteUser)
+[documentación Swagger](https://app.swaggerhub.com/apis-docs/ssinuco/FleetManagementAPI/1.0.0#/user/deleteUser)
 proporcionada.
 
 ### Definición de terminado

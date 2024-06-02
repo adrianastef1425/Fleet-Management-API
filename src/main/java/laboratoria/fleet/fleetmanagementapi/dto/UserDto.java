@@ -1,6 +1,6 @@
 package laboratoria.fleet.fleetmanagementapi.dto;
 
-public class UsersDto {
+public class UserDto {
 
     private long id;
 
@@ -8,9 +8,15 @@ public class UsersDto {
 
     private String email;
 
+    //@JsonIgnore
     private String password;
-
-    public UsersDto(long id, String name, String email, String password) {
+    /*
+    @JsonCreator
+    public UserDto(@JsonProperty("password") String password) {
+        this.password = password;
+    }
+    */
+    public UserDto(long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
