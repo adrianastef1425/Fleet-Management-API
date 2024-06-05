@@ -22,6 +22,17 @@ public class UserDto {
         this.email = email;
         this.password = password;
     }
+    /*
+    //Usar donde no se quiera mostrar el password
+    public UserDto(long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+    */
+
+    public UserDto() {
+    }
 
     public long getId() {
         return id;

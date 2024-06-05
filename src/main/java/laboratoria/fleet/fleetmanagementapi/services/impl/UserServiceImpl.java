@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
         User user = UserMapper.mapToUser(userDto);
         if(user.getEmail() == null || user.getPassword() == null){
-            throw new ValidationException("Email or password are required");
+            throw new ValidationException("Email and password are required");
         }
         if(userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new AlreadyExistException("Email already exists");
@@ -52,12 +52,12 @@ public class UserServiceImpl implements UserService {
 
         Page<User> userList = userRepository.findAll(PageRequest.of(pageNumber, pageSize));
         return userList.stream()
-                .map((user) -> UserMapper.mapToUserDto(user))
+                .map((user) -> UserMapper.mapToUserDtoWithoutPassword(user))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public UserDto updateUser(String idOrEmail, UserDto updatedUsers){
+    public UserDto updateUser(String idOrEmail, UserDto updatedUser){
         User user;
 
         if(idOrEmail.contains("@")){
@@ -72,26 +72,26 @@ public class UserServiceImpl implements UserService {
             );
         }
 
-        if (userRepository.findByEmail(updatedUsers.getEmail()).isPresent()) {
+        if (userRepository.findByEmail(updatedUser.getEmail()).isPresent()) {
          throw new ValidationException("Email already exists");
         }
 
-        if(updatedUsers.getPassword().length() < 17){
-            throw new ValidationException("Password must be at least 17 characters");
+        if(updatedUser.getPassword().length() < 6){
+            throw new ValidationException("Password must be at least 6 characters");
         }
 
-        user.setName(updatedUsers.getName());
-        user.setEmail(updatedUsers.getEmail());
-        user.setPassword(updatedUsers.getPassword());
+        user.setName(updatedUser.getName());
+        user.setEmail(updatedUser.getEmail());
+        user.setPassword(updatedUser.getPassword());
 
         User updateUserObj = userRepository.save(user);
 
-        return UserMapper.mapToUserDto(updateUserObj);
+        return UserMapper.mapToUserDtoWithoutPassword(updateUserObj);
     }
 
 
     @Override
-    public UserDto partialUpdateUser(String idOrEmail, UserDto updatedUsers) {
+    public UserDto partialUpdateUser(String idOrEmail, UserDto updatedUser) {
 
         User user;
         if(idOrEmail.contains("@")){
@@ -105,21 +105,21 @@ public class UserServiceImpl implements UserService {
             );
         }
 
-        if (userRepository.findByEmail(updatedUsers.getEmail()).isPresent()) {
+        if (userRepository.findByEmail(updatedUser.getEmail()).isPresent()) {
             throw new ValidationException("Email already exists");
         }
 
-        if(updatedUsers.getPassword() != null && updatedUsers.getPassword().length() < 17){
-            throw new ValidationException("Password must be at least 17 characters");
+        if(updatedUser.getPassword() != null && updatedUser.getPassword().length() < 6){
+            throw new ValidationException("Password must be at least 6 characters");
         }
 
-        if(updatedUsers.getName() !=null) user.setName(updatedUsers.getName());
-        if(updatedUsers.getEmail() !=null) user.setEmail(updatedUsers.getEmail());
-        if(updatedUsers.getPassword() !=null) user.setPassword(updatedUsers.getPassword());
+        if(updatedUser.getName() !=null) user.setName(updatedUser.getName());
+        if(updatedUser.getEmail() !=null) user.setEmail(updatedUser.getEmail());
+        if(updatedUser.getPassword() !=null) user.setPassword(updatedUser.getPassword());
 
         User updateUserObj = userRepository.save(user);
 
-        return UserMapper.mapToUserDto(updateUserObj);
+        return UserMapper.mapToUserDtoWithoutPassword(updateUserObj);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
             );
         }
         userRepository.deleteById(user.getId());
-        return UserMapper.mapToUserDto(user);
+        return UserMapper.mapToUserDtoWithoutPassword(user);
     }
 
 }
