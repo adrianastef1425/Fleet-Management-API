@@ -23,7 +23,6 @@ public class User implements UserDetails {
 
     @Column(name = "password")
 
-    //@JsonIgnore
     private String password;
 
     public User() {

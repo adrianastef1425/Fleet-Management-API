@@ -44,24 +44,6 @@ public class TrajectoriesServiceImpl implements TrajectoriesService {
 
     @Override
     public List<TrajectoriesDto> getTrajectoriesByIdAndDate(long taxiId, String dateString, int page, int size) {
-        /*
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate;
-
-        try {
-            localDate = LocalDate.parse(dateString, formatter);
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Invalid date format. Please use yyyy-MM-dd", e);
-        }
-
-        // Obtener el inicio del día y el inicio del día siguiente sin considerar la zona horaria
-        LocalDateTime startOfDay = localDate.atStartOfDay();
-        LocalDateTime startOfNextDay = localDate.plusDays(1).atStartOfDay();
-
-        // Convertir LocalDateTime a java.util.Date usando java.sql.Timestamp
-        Date startDate = java.sql.Timestamp.valueOf(startOfDay);
-        Date endDate = java.sql.Timestamp.valueOf(startOfNextDay);
-         */
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -70,24 +52,18 @@ public class TrajectoriesServiceImpl implements TrajectoriesService {
             date = formatter.parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
-            // Manejo de excepción apropiado
+
         }
 
-
-        //List<Trajectories> trajectoriesList = trajectoriesRepository.findAllByTaxiId(taxiId);
-
-        //List<Trajectories> trajectoriesList = trajectoriesRepository.findAllByTaxis_IdAndDateBetween(taxiId, startDate, endDate);
 
         Pageable pageable = PageRequest.of(page, size/*, Sort.by("date").descending()*/);
         Page<Trajectories> trajectoriesPage = trajectoriesRepository.getAllByTaxisIdAndDate(taxiId, date, pageable);
 
-        //List<Trajectories> trajectoriesList = trajectoriesRepository.getAllByTaxisIdAndDate(taxiId, date);
         return trajectoriesPage.stream()
                 .map(trajectories -> TrajectoriesMapper.mapToTrajectoriesDto(trajectories))
                 .collect(Collectors.toList());
 
     }
-
 
     @Override
     public List<LatestTrajectoriesDto> getTrajectoriesLastLocation(int page, int size) {

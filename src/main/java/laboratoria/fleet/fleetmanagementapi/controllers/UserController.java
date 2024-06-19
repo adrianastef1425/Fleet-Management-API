@@ -26,7 +26,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // Build Add User REST API
     @PostMapping
     public ResponseEntity<Object> createUserController(@RequestBody UserDto userDto) {
         UserDto savedUser;
@@ -49,7 +48,6 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-    // Build Get All User REST API
     @GetMapping
     public ResponseEntity<Object> getAllUserController(@RequestParam(defaultValue = "0") Integer page,
                                                        @RequestParam(defaultValue = "10") Integer limit) {
@@ -70,7 +68,6 @@ public class UserController {
         return ResponseEntity.ok(userList);
     }
 
-    // Build Update PUT User REST API
     @PutMapping("{idOrEmail}")
     public ResponseEntity<Object> updateUserByIdController(@PathVariable("idOrEmail") String userIdOrEmail,
                                                              @RequestBody UserDto updatedUser) {
@@ -95,7 +92,6 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
-    // Build Update PATCH User REST API
     @PatchMapping("{idOrEmail}")
     public ResponseEntity<Object> partialUpdateUserController(@PathVariable("idOrEmail") String userIdOrEmail,
                                                                 @RequestBody UserDto updatedUser) {
@@ -120,7 +116,6 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
-    // Build Delete User REST API
     @DeleteMapping("{idOrEmail}")
     public ResponseEntity<Object> deleteUserController(@PathVariable("idOrEmail") String userIdOrEmail) {
         UserDto userDto;

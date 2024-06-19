@@ -1,49 +1,37 @@
 package laboratoria.fleet.fleetmanagementapi.dto;
 
-
 import java.util.Date;
 
-public class LatestTrajectoriesDto {
+public class ExportExcelDto {
 
-    private long id;
+    private long taxiId;
     private String plate;
-    private Date date;
     private double latitude;
     private double longitude;
+    private Date date;
 
-    public LatestTrajectoriesDto(long id, String plate, Date date, double latitude, double longitude) {
-        this.id = id;
+    public ExportExcelDto(long taxiId, String plate, double latitude, double longitude, Date date) {
+        this.taxiId = taxiId;
         this.plate = plate;
-        this.date = date;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.date = date;
     }
 
-
-    public long getId() {
-        return id;
+    public long getTaxiId() {
+        return taxiId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTaxiId(long taxiId) {
+        this.taxiId = taxiId;
     }
 
-    //////////
     public String getPlate() {
         return plate;
     }
 
     public void setPlate(String plate) {
         this.plate = plate;
-    }
-    /////////
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public double getLatitude() {
@@ -60,5 +48,13 @@ public class LatestTrajectoriesDto {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

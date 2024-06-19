@@ -2,9 +2,6 @@ package laboratoria.fleet.fleetmanagementapi.entities;
 
 import jakarta.persistence.*;
 
-//@: anotations - son metadatos
-//Entidad de persistencia en JPA(Java Persisence API)
-// Representa una tabla en DB
 @Entity
 @Table(name = "taxis")
 public class Taxis {

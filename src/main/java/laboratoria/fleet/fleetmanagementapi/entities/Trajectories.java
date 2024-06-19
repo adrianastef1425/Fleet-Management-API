@@ -10,15 +10,9 @@ public class Trajectories {
     @Id
     private long id;
 
-    ////
     @ManyToOne
     @JoinColumn(name = "taxi_id")
     private Taxis taxis;
-    //////
-
-    //@Column(name = "taxi_id")//
-    // ///private long taxis//mapper -> getTaxis().plate
-    //private long taxiId;
 
     @Column(name = "date")
     private Date date; //clase Date es propio de java para fechas
@@ -41,16 +35,6 @@ public class Trajectories {
         this.id = id;
     }
 
-    /*
-    public long getTaxiId() {
-        return taxiId;
-    }
-
-    public void setTaxiId(long taxiId) {
-        this.taxiId = taxiId;
-    }*/
-
-    //////////////////////
     public Taxis getTaxis() {
         return taxis;
     }
@@ -58,7 +42,6 @@ public class Trajectories {
     public void setTaxi(Taxis taxis) {
         this.taxis = taxis;
     }
-    ////////////////////////
 
     public Date getDate() {
         return date;
