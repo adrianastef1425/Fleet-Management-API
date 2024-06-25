@@ -8,28 +8,14 @@ public class UserDto {
 
     private String email;
 
-    //@JsonIgnore
     private String password;
-    /*
-    @JsonCreator
-    public UserDto(@JsonProperty("password") String password) {
-        this.password = password;
-    }
-    */
+
     public UserDto(long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
-    /*
-    //Usar donde no se quiera mostrar el password
-    public UserDto(long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-    */
 
     public UserDto() {
     }

@@ -16,10 +16,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc//consultas al controlador interno, para la base de datos ya se contectaba antes
+@AutoConfigureMockMvc
 class TaxisControllerTest {
 
-    @Autowired//Spring lo inyecte y para poder utilizarlo
+    @Autowired
     private MockMvc mockMvc;
 
     @Autowired

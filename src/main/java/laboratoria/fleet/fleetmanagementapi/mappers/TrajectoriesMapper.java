@@ -1,5 +1,6 @@
 package laboratoria.fleet.fleetmanagementapi.mappers;
 
+import laboratoria.fleet.fleetmanagementapi.dto.ExportExcelDto;
 import laboratoria.fleet.fleetmanagementapi.dto.LatestTrajectoriesDto;
 import laboratoria.fleet.fleetmanagementapi.dto.TrajectoriesDto;
 import laboratoria.fleet.fleetmanagementapi.entities.Taxis;
@@ -15,9 +16,19 @@ public class TrajectoriesMapper {
 
 
     public static LatestTrajectoriesDto mapToLatestTrajectoriesDto(Trajectories trajectories){
-        return new LatestTrajectoriesDto( trajectories.getTaxis().getId(),trajectories.getTaxis().getPlate(),
-                trajectories.getDate(), trajectories.getLatitude(),
-                trajectories.getLongitude());
+        return new LatestTrajectoriesDto(   trajectories.getTaxis().getId(),
+                                            trajectories.getTaxis().getPlate(),
+                                            trajectories.getDate(),
+                                            trajectories.getLatitude(),
+                                            trajectories.getLongitude());
+    }
+
+    public static ExportExcelDto mapToExportExcelDto(Trajectories trajectories){
+        return new ExportExcelDto(  trajectories.getTaxis().getId(),
+                                    trajectories.getTaxis().getPlate(),
+                                    trajectories.getLatitude(),
+                                    trajectories.getLongitude(),
+                                    trajectories.getDate());
     }
 
 

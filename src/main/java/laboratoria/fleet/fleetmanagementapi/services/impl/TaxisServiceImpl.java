@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaxisServiceImpl implements TaxisService {
-    @Autowired//funciona si esté o no esté
+
     private TaxisRepository taxisRepository;
 
     public TaxisServiceImpl(TaxisRepository taxisRepository) {

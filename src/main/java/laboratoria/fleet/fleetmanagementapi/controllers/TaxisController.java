@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-//se utiliza para crear API RESTful en Spring MVC
-//Se usa comúnmente para crear endpoints de API RESTful que no renderizan vistas HTML, sino que devuelven datos en formato JSON o XML.
 @RestController
-//todas las solicitudes HTTP que comienzan con /taxis serán manejadas por este controlador
 @RequestMapping("/taxis")
 public class TaxisController {
 
@@ -22,7 +19,6 @@ public class TaxisController {
         this.taxisService = taxisService;
     }
 
-    //Build Get All Taxis REST API
     @GetMapping("/all")
     public ResponseEntity<List<TaxisDto>> getAllTaxisController() {
         List<TaxisDto> taxisList = taxisService.getAllTaxis();
@@ -33,7 +29,7 @@ public class TaxisController {
     public ResponseEntity<Object> getTaxisController(@RequestParam(defaultValue = "0") Integer page,
                                                              @RequestParam(defaultValue = "10") Integer limit) {
 
-        if(page < 0 ){//Trasladar los errores a serviceImpl
+        if(page < 0 ){
             HashMap<String, String> response = new HashMap<>();
             response.put("error", "Invalid page number");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -42,11 +38,5 @@ public class TaxisController {
         List<TaxisDto> taxisPage = taxisService.getTaxisWithPagination(page, limit);
         return ResponseEntity.ok(taxisPage);
     }
-    /*
-    @GetMapping
-    public ResponseEntity<List<TaxisDto>> getTaxisWithPaginationController(@RequestParam Integer page,@RequestParam Integer limit) {
-        List<TaxisDto> taxisPage = taxisService.getTaxisWithPagination(page, limit);
-        return ResponseEntity.ok(taxisPage);
-    }
-    */
+
 }

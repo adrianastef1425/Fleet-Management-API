@@ -19,10 +19,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc//consultas al controlador interno, para la base de datos ya se contectaba antes
+@AutoConfigureMockMvc
 class TrajectoriesControllerTest {
 
-    @Autowired//Spring lo inyecte y para poder utilizarlo
+    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
@@ -44,8 +44,8 @@ class TrajectoriesControllerTest {
     @DisplayName("Test getTrajectoriesByIdAndDateController")
     void getTrajectoriesByIdAndDateControllerTest() throws Exception {
 
-        String id = "8935";//probar que todos los elementos tiene el id 8935
-        String date = "2008-02-03";//probar qur todos los elementos tiene el date 2008-02-03
+        String id = "8935";
+        String date = "2008-02-03";
         String page = "0";
         String limit = "10";
 
